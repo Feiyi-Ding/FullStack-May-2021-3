@@ -1,0 +1,12 @@
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\bin\Debug\net5.0\ApplicationCore.deps.json
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\bin\Debug\net5.0\ApplicationCore.dll
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\bin\Debug\net5.0\ref\ApplicationCore.dll
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\bin\Debug\net5.0\ApplicationCore.pdb
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\obj\Debug\net5.0\ApplicationCore.csprojAssemblyReference.cache
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\obj\Debug\net5.0\ApplicationCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\obj\Debug\net5.0\ApplicationCore.AssemblyInfoInputs.cache
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\obj\Debug\net5.0\ApplicationCore.AssemblyInfo.cs
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\obj\Debug\net5.0\ApplicationCore.csproj.CoreCompileInputs.cache
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\obj\Debug\net5.0\ApplicationCore.dll
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\obj\Debug\net5.0\ref\ApplicationCore.dll
+C:\Users\dingf\Documents\Antra\D19\MovieShop\ApplicationCore\obj\Debug\net5.0\ApplicationCore.pdb

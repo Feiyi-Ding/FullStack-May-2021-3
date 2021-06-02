@@ -23,7 +23,13 @@ namespace MovieShop.MVC.Controllers
             return View();
         }
 
+        //localhost/home/Privacy
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult TopMovies()
         {
             return View();
         }
