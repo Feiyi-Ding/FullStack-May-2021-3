@@ -7,20 +7,40 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+using ApplicationCore.ServiceInterfaces;
+using Infrastructure.Services;
+
+
 namespace MovieShop.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IMovieService _movieService;
+        //constructor injection
+        public HomeController(IMovieService movieService)
         {
-            _logger = logger;
+            //_movieService should have an instance of a class that implements IMovieService
+            _movieService = movieService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            // We need to go to database and display top revenue movies
+            // thin controllers...
+
+
+            var movies = _movieService.GetTopRevenueMovies();
+            //send the data to the view so that the view can display the top movies
+            //1. passing the data from my controller to my view using strongly typed Models *****
+            //2. ViewBag
+            //3. ViewData
+
+            ViewBag.MoviesCount = movies.Count;
+            ViewBag.PageTitle = "Top Revenue Movies";
+
+            ViewData["MyCustomerData"] = "Some Information";
+
+            return View(movies);
         }
 
         //localhost/home/Privacy

@@ -9,6 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Infrastructure.Services;
+using ApplicationCore.ServiceInterfaces;
+using Microsoft.EntityFrameworkCore;
+using Infrastructure.Data;
+
 namespace MovieShop.MVC
 {
     public class Startup
@@ -24,6 +29,11 @@ namespace MovieShop.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IMovieService, MovieService>();
+
+            services.AddDbContext<MovieShopDbContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

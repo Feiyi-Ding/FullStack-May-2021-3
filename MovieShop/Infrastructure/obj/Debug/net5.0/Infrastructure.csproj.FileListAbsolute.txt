@@ -13,3 +13,6 @@ C:\Users\dingf\Documents\Antra\D19\MovieShop\Infrastructure\obj\Debug\net5.0\Inf
 C:\Users\dingf\Documents\Antra\D19\MovieShop\Infrastructure\obj\Debug\net5.0\Infrastructure.dll
 C:\Users\dingf\Documents\Antra\D19\MovieShop\Infrastructure\obj\Debug\net5.0\ref\Infrastructure.dll
 C:\Users\dingf\Documents\Antra\D19\MovieShop\Infrastructure\obj\Debug\net5.0\Infrastructure.pdb
+C:\Users\dingf\Documents\Antra\D19\MovieShop\Infrastructure\bin\Debug\net5.0\Infrastructure.runtimeconfig.json
+C:\Users\dingf\Documents\Antra\D19\MovieShop\Infrastructure\bin\Debug\net5.0\Infrastructure.runtimeconfig.dev.json
+C:\Users\dingf\Documents\Antra\D19\MovieShop\Infrastructure\obj\Debug\net5.0\Infrastructure.genruntimeconfig.cache
