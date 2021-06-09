@@ -23,22 +23,19 @@ namespace MovieShop.MVC.Controllers
             _movieService = movieService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // We need to go to database and display top revenue movies
             // thin controllers...
 
 
-            var movies = _movieService.GetTopRevenueMovies();
+            var movies = await _movieService.GetTopRevenueMovies();
             //send the data to the view so that the view can display the top movies
             //1. passing the data from my controller to my view using strongly typed Models *****
             //2. ViewBag
             //3. ViewData
 
             ViewBag.MoviesCount = movies.Count;
-            ViewBag.PageTitle = "Top Revenue Movies";
-
-            ViewData["MyCustomerData"] = "Some Information";
 
             return View(movies);
         }

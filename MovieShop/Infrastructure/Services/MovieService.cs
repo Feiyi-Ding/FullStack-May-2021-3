@@ -3,59 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApplicationCore.Entities;
 using ApplicationCore.Models.Response;
+using ApplicationCore.RepositoryInterfaces;
 using ApplicationCore.ServiceInterfaces;
+using AutoMapper;
+using Infrastructure.Repositories;
 
 namespace Infrastructure.Services
 {
     public class MovieService : IMovieService
     {
-        public List<MovieCardResponseModel> GetTopRevenueMovies()
+        private readonly IMovieRepository _movieRepository;
+
+        public MovieService(IMovieRepository movieRepository)
         {
-            // we need to call our repository and get the data from database
-
-            var movies = new List<MovieCardResponseModel>
-            {
-                new MovieCardResponseModel {Id = 1, Title = "Avengers: Infinity War"},
-                new MovieCardResponseModel {Id = 2, Title = "Avatar"},
-                new MovieCardResponseModel {Id = 3, Title = "Star Wars: The Force Awakens"},
-                new MovieCardResponseModel {Id = 4, Title = "Titanic"},
-                new MovieCardResponseModel {Id = 5, Title = "Inception"},
-                new MovieCardResponseModel {Id = 6, Title = "Avengers: Age of Ultron"},
-                new MovieCardResponseModel {Id = 7, Title = "Interstellar"},
-                new MovieCardResponseModel {Id = 8, Title = "Fight Club"},
-                new MovieCardResponseModel
-                {
-                    Id = 9, Title = "The Lord of the Rings: The Fellowship of the Ring"
-                },
-                new MovieCardResponseModel {Id = 10, Title = "The Dark Knight"},
-                new MovieCardResponseModel {Id = 11, Title = "The Hunger Games"},
-                new MovieCardResponseModel {Id = 12, Title = "Django Unchained"},
-                new MovieCardResponseModel
-                {
-                    Id = 13, Title = "The Lord of the Rings: The Return of the King"
-                },
-                new MovieCardResponseModel
-                    {Id = 14, Title = "Harry Potter and the Philosopher's Stone"},
-                new MovieCardResponseModel {Id = 15, Title = "Iron Man"},
-                new MovieCardResponseModel {Id = 16, Title = "Furious 7"}
-            };
-
-            return movies;
+            _movieRepository = movieRepository;
         }
 
-        public MovieDetailsResponseModel GetMovieDetailsById(int id)
+        public async Task<List<MovieCardResponseModel>> GetTopRevenueMovies()
         {
-            var movieDetails = new MovieDetailsResponseModel
-            {
-                Id = 1,
-                Title = "Avengers: Infinity War",
-                PosterUrl = "",
-                Budget = 1200000,
-                Overview = "Test String"
-            };
+            var movies = await _movieRepository.GetHighestRevenueMovie();
 
-            return movieDetails;
+            var movieCardList = new List<MovieCardResponseModel>();
+            foreach (var movie in movies)
+            {
+                movieCardList.Add(new MovieCardResponseModel
+                {
+                    Id = movie.Id,
+                    PosterUrl = movie.PosterUrl,
+                    ReleaseDate = movie.ReleaseDate.GetValueOrDefault(),
+                    Title = movie.Title
+                });
+            }
+
+            return movieCardList;
+        }
+
+        public async Task<MovieDetailsResponseModel> GetMovieDetailsById(int id)
+        {
+            var movie = await _movieRepository.GetById(id);
+            // if not found
+            var response = new MovieDetailsResponseModel();
+            response.Id = movie.Id;
+            response.Title = movie.Title;
+            response.PosterUrl = movie.PosterUrl;
+            response.BackdropUrl = movie.BackdropUrl;
+            response.Rating = movie.Rating;
+            response.Overview = movie.Overview;
+            response.Tagline = movie.Tagline;
+            response.Budget = movie.Budget;
+            response.Revenue = movie.Revenue;
+            response.ImdbUrl = movie.ImdbUrl;
+            response.TmdbUrl = movie.TmdbUrl;
+            response.RunTime = movie.RunTime;
+            response.Price = movie.Price;
+            response.ReleaseDate = movie.ReleaseDate;
+            //var genres = new List<GenreResponseModel>();
+            //List<Genre> gList = movie.Genres.ToList();
+            //foreach (var genre in gList)
+            //{
+            //    genres.Add(new GenreResponseModel
+            //    {
+            //        Id = genre.Id,
+            //        Name = genre.Name,
+            //    });
+
+            //}
+            //response.Genres = genres;
+
+            return response;
         }
     }
 }

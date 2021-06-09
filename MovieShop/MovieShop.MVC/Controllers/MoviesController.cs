@@ -22,9 +22,10 @@ namespace MovieShop.MVC.Controllers
         //localhost/movies/details/23
         // Always have HttpMethod Type Attribute, by default if you don't have anything it's HttpGET
         [HttpGet("/movies/{id}")]
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var movies = await _movieService.GetMovieDetailsById(id);
+            return View(movies);
         }
 
         [HttpGet]
