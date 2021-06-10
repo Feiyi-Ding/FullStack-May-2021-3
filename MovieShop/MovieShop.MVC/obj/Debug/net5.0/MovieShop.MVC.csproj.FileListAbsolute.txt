@@ -185,3 +185,5 @@ C:\Users\dingf\Documents\Antra\D19\MovieShop\MovieShop.MVC\bin\Debug\net5.0\Auto
 C:\Users\dingf\Documents\Antra\D19\MovieShop\MovieShop.MVC\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\dingf\Documents\Antra\D19\MovieShop\MovieShop.MVC\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\dingf\Documents\Antra\D19\MovieShop\MovieShop.MVC\obj\Debug\net5.0\Razor\Views\Admin\CreateMovie.cshtml.g.cs
+C:\Users\dingf\Documents\Antra\D19\MovieShop\MovieShop.MVC\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\dingf\Documents\Antra\D19\MovieShop\MovieShop.MVC\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll

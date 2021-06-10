@@ -44,33 +44,35 @@ namespace Infrastructure.Services
         {
             var movie = await _movieRepository.GetById(id);
             // if not found
-            var response = new MovieDetailsResponseModel();
-            response.Id = movie.Id;
-            response.Title = movie.Title;
-            response.PosterUrl = movie.PosterUrl;
-            response.BackdropUrl = movie.BackdropUrl;
-            response.Rating = movie.Rating;
-            response.Overview = movie.Overview;
-            response.Tagline = movie.Tagline;
-            response.Budget = movie.Budget;
-            response.Revenue = movie.Revenue;
-            response.ImdbUrl = movie.ImdbUrl;
-            response.TmdbUrl = movie.TmdbUrl;
-            response.RunTime = movie.RunTime;
-            response.Price = movie.Price;
-            response.ReleaseDate = movie.ReleaseDate;
-            //var genres = new List<GenreResponseModel>();
-            //List<Genre> gList = movie.Genres.ToList();
-            //foreach (var genre in gList)
-            //{
-            //    genres.Add(new GenreResponseModel
-            //    {
-            //        Id = genre.Id,
-            //        Name = genre.Name,
-            //    });
+            var response = new MovieDetailsResponseModel
+            {
+                Id = movie.Id,
+                Title = movie.Title,
+                PosterUrl = movie.PosterUrl,
+                BackdropUrl = movie.BackdropUrl,
+                Rating = movie.Rating,
+                Overview = movie.Overview,
+                Tagline = movie.Tagline,
+                Budget = movie.Budget,
+                Revenue = movie.Revenue,
+                ImdbUrl = movie.ImdbUrl,
+                TmdbUrl = movie.TmdbUrl,
+                RunTime = movie.RunTime,
+                Price = movie.Price,
+                ReleaseDate = movie.ReleaseDate.GetValueOrDefault()
+            };
 
-            //}
-            //response.Genres = genres;
+            response.Genres = new List<GenreResponseModel>();
+            foreach (var genre in movie.MovieGenres)
+            {
+                response.Genres.Add(new GenreResponseModel { Id = genre.Genre.Id, Name = genre.Genre.Name });
+            }
+
+            response.Casts = new List<CastResponseModel>();
+            foreach (var cast in movie.MovieCasts)
+            {
+                response.Casts.Add(new CastResponseModel { Id = cast.CastId, Name = cast.Cast.Name, ProfilePath = cast.Cast.ProfilePath, Character = cast.Character });
+            }
 
             return response;
         }

@@ -47,7 +47,11 @@ namespace Infrastructure.Repositories
 
         public virtual async Task<T> Add(T entity)
         {
-            throw new NotImplementedException();
+            // add data to the database
+            await _dbContext.Set<T>().AddAsync(entity);// only in the memory
+            await _dbContext.SaveChangesAsync();// save to database
+            return entity;
+
         }
 
         public virtual async Task<T> Update(T entity)
@@ -60,7 +64,7 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> GetExist(Expression<Func<T, bool>> filter)
+        public virtual Task<bool> GetExist(Expression<Func<T, bool>> filter)
         {
             throw new NotImplementedException();
         }
