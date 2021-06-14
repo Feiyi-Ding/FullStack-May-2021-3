@@ -21,5 +21,25 @@ namespace Infrastructure.Repositories
             var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
             return user;
         }
+
+        public async Task UpdateUser(User user)
+        {
+            var originalInfo = await GetUserByEmail(user.Email);
+            if(user.FirstName != null)
+            {
+                originalInfo.FirstName = user.FirstName;
+            }
+            if(user.LastName != null)
+            {
+                originalInfo.LastName = user.LastName;
+            }
+            if(user.Email != null)
+            {
+                originalInfo.Email = user.Email;
+            }
+
+            var updatedInfo = _dbContext.Users.Update(originalInfo);
+            return;
+        }
     }
 }

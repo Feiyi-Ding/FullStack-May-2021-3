@@ -1,0 +1,35 @@
+﻿@using ApplicationCore.ServiceInterfaces;
+@model ApplicationCore.Models.Request.UserRegisterRequestModel
+@inject ICurrentUserService _CurrentUserService;
+
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<h1>Edit Profile</h1>
+<form asp-action="EditProfile">
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <label class="labels">
+                First Name
+            </label>
+            <input type="text" class="form-control" placeholder=@_CurrentUserService.FullName.Split(" ")[0] asp-for="FirstName">
+        </div>
+        <div class="col-md-6">
+            <label class="labels">
+                Last Name
+            </label>
+            <input type="text" class="form-control" placeholder=@_CurrentUserService.FullName.Split(" ")[1] asp-for="LastName">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <label class="labels">
+                Email
+            </label>
+            <input type="text" class="form-control" placeholder=@_CurrentUserService.Email asp-for="Email">
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+

@@ -15,6 +15,8 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using ApplicationCore.RepositoryInterfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using MovieShop.MVC.Middlewares;
 
 namespace MovieShop.MVC
 {
@@ -41,9 +43,22 @@ namespace MovieShop.MVC
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
 
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+
             services.AddDbContext<MovieShopDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection"));
             });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(option =>
+                {
+                    option.Cookie.Name = "MovieShopAuthCookie";
+                    option.ExpireTimeSpan = TimeSpan.FromHours(2);
+                    option.LoginPath = "/Account/Login";
+                });
+
+            services.AddHttpContextAccessor();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,7 +79,11 @@ namespace MovieShop.MVC
 
             app.UseRouting();
 
+            app.UseAuthentication(); //must before aauthorization
             app.UseAuthorization();
+
+            // register my customer middleware
+            app.UseLoggerMiddleware();
 
             app.UseEndpoints(endpoints =>
             {

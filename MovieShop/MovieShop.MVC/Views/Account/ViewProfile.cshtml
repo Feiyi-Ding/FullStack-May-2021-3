@@ -1,0 +1,38 @@
+﻿@using ApplicationCore.ServiceInterfaces;
+@inject ICurrentUserService _CurrentUserService;
+
+@{
+    ViewData["Title"] = "Profile details";
+}
+
+<h1>Profile Details</h1>
+
+<div class="col-md-8">
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Full Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    @_CurrentUserService.FullName
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    @_CurrentUserService.Email
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <a class="btn btn-info " asp-controller="Account" asp-action="EditProfile">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>

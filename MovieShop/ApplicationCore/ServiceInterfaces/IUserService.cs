@@ -14,6 +14,8 @@ namespace ApplicationCore.ServiceInterfaces
 
         Task<UserLoginResponseModel> Login(string email, string password);
 
+        Task<UserRegisterResponseModel> UpdateProfile(UserRegisterRequestModel userRegisterRequestModel);
+
         // delete
         // edit user
         // change password

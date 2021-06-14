@@ -111,5 +111,28 @@ namespace Infrastructure.Services
                 numBytesRequested: 256 / 8));
             return hashed;
         }
+
+        public async Task<UserRegisterResponseModel> UpdateProfile(UserRegisterRequestModel userRegisterRequestModel)
+        {
+            var dbUser = await _userRepository.GetUserByEmail(userRegisterRequestModel.Email);
+
+            var user = new User
+            {
+                FirstName = userRegisterRequestModel.FirstName,
+                LastName = userRegisterRequestModel.LastName,
+                Email = userRegisterRequestModel.Email
+            };
+            await _userRepository.UpdateUser(user);
+
+            var response = new UserRegisterResponseModel
+            {
+                Id = dbUser.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+            };
+
+            return response;
+        }
     }
 }
